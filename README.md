@@ -4,7 +4,7 @@ Playing with Web Components
 # About
 The project is written in TypeScript and uses the `tsc` compiler to generate ES5 JavaScript. It includes [polyfill.io](https://polyfill.io) polyfill service and polyfills for the web components standard ([webcomponents-bundle.js and custom-elements-es5-adapter.js](https://github.com/WebComponents/webcomponentsjs)), so the page works on all major browsers.
 
-This project contains a single web component [src/CounterElement.ts](CounterElement.ts) written in Typescript. It is added to the DOM in [src/main.ts](main.ts).
+This project contains a single web component [src/CounterElement.ts](src/CounterElement.ts) written in Typescript. It is added to the DOM in [src/main.ts](src/main.ts).
 
 
 ## How to use
