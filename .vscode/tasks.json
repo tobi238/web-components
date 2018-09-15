@@ -3,23 +3,24 @@
 	// for the documentation about the tasks.json format
 	"version": "2.0.0",
 	"tasks": [{
-			"type": "typescript",
-			"tsconfig": "tsconfig.json",
-			"problemMatcher": [
-				"$tsc"
-			],
+			"label": "Build",
+			"type": "shell",
+			"windows": {
+				"command": "node ${workspaceFolder}/node_modules/gulp/bin/gulp.js build",
+			},
+			"problemMatcher": [],
+		},
+		{
+			"label": "Dev Server",
+			"type": "shell",
+			"windows": {
+				"command": "node ${workspaceFolder}/node_modules/gulp/bin/gulp.js server",
+			},
+			"problemMatcher": [],
 			"group": {
 				"kind": "build",
 				"isDefault": true
 			}
-		},
-		{
-			"type": "typescript",
-			"tsconfig": "tsconfig.json",
-			"option": "watch",
-			"problemMatcher": [
-				"$tsc-watch"
-			]
 		}
 	]
 }

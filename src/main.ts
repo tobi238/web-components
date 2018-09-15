@@ -1,7 +1,11 @@
-var newCounter = document.createElement('counter-element');
-// Add it to the page
-document.body.appendChild(newCounter);
-// Attach event listeners
-document.querySelector('counter-element').addEventListener('open', function () {
-	console.log('open')
-});
+import MapElement from './MapElement';
+
+// register new element
+window.customElements.define('custom-map', MapElement);
+
+// create new element in js
+const newMap = document.createElement('custom-map');
+document.body.appendChild(newMap);
+newMap.setAttribute('bg-white', '');
+newMap.setAttribute('center', '[49.010617, 8.3637583]');
+newMap.setAttribute('zoom', '13');
