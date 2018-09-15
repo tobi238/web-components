@@ -1,5 +1,7 @@
 # web-components
-Playing with Web Components
+Playground for Web Components
+
+__🚀 All playgrounds are tagged. Switch between them to see more awesome stuff!__
 
 # About
 The project is written in TypeScript and uses the `tsc` compiler to generate ES5 JavaScript. It includes [polyfill.io](https://polyfill.io) polyfill service and polyfills for the web components standard ([webcomponents-bundle.js and custom-elements-es5-adapter.js](https://github.com/WebComponents/webcomponentsjs)), so the page works on all major browsers.
