@@ -102,13 +102,13 @@ export default class MapElement extends HTMLElement {
   setupIcons() {
     Icon.Default.imagePath = window.location.origin;
     Icon.Default.mergeOptions({
-      iconRetinaUrl: `/lib/leaflet/marker-icon-2x.png`,
-      iconUrl: `/lib/leaflet/marker-icon.png`,
-      shadowUrl: `/lib/leaflet/marker-shadow.png`,
+      iconRetinaUrl: `lib/leaflet/marker-icon-2x.png`,
+      iconUrl: `lib/leaflet/marker-icon.png`,
+      shadowUrl: `lib/leaflet/marker-shadow.png`,
     });
 
     const leafletCSS = document.createElement('link');
-    leafletCSS.href = `/lib/leaflet/leaflet.css`;
+    leafletCSS.href = `lib/leaflet/leaflet.css`;
     leafletCSS.type = 'text/css';
     leafletCSS.rel = 'stylesheet';
     leafletCSS.media = 'screen,print';
