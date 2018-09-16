@@ -62,11 +62,20 @@ export const watchJS = () => {
 	}, gulp.series(buildJS, reloadBrowser))
 }
 
+/* OTHER FILES */
+export const copyStaticFiles = () => {
+	return gulp.src([
+			'node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js',
+			'node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js'
+		])
+		.pipe(gulp.dest('dist/'));
+}
+
 /* CLEAN */
 export const clean = () => del(['dist']);
 
 /* TASKS */
-export const build = gulp.series(clean, gulp.parallel(buildSCSS, buildJS));
+export const build = gulp.series(clean, gulp.parallel(buildSCSS, buildJS, copyStaticFiles));
 gulp.task('build', build);
 
 export const server = gulp.series(build, initBrowser, gulp.parallel(watchSCSS, watchJS));
