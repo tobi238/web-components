@@ -13948,12 +13948,12 @@ var MapElement = /** @class */ (function (_super) {
     MapElement.prototype.setupIcons = function () {
         leaflet_1.Icon.Default.imagePath = window.location.origin;
         leaflet_1.Icon.Default.mergeOptions({
-            iconRetinaUrl: "/lib/leaflet/marker-icon-2x.png",
-            iconUrl: "/lib/leaflet/marker-icon.png",
-            shadowUrl: "/lib/leaflet/marker-shadow.png",
+            iconRetinaUrl: "lib/leaflet/marker-icon-2x.png",
+            iconUrl: "lib/leaflet/marker-icon.png",
+            shadowUrl: "lib/leaflet/marker-shadow.png",
         });
         var leafletCSS = document.createElement('link');
-        leafletCSS.href = "/lib/leaflet/leaflet.css";
+        leafletCSS.href = "lib/leaflet/leaflet.css";
         leafletCSS.type = 'text/css';
         leafletCSS.rel = 'stylesheet';
         leafletCSS.media = 'screen,print';
