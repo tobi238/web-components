@@ -8,7 +8,7 @@ Playground for Web Components
 
 ## Demo
 
-See the custom map element in action here: [https://tobi238.github.io/web-components/](https://tobi238.github.io/web-components/)
+See the custom map element in action here: [https://tobi238.github.io/web-components/dist/](https://tobi238.github.io/web-components/dist/)
 
 ## About
 

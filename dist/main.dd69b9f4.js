@@ -9,4 +9,4 @@ var t,i=arguments[3];!function(i,e){"object"==typeof exports&&"undefined"!=typeo
 },{}],"ZCfc":[function(require,module,exports) {
 "use strict";var e=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});var t=e(require("./components/MapElement"));require("./main.scss"),window.customElements.define("custom-map",t.default);var r=document.createElement("custom-map");document.body.appendChild(r),r.setAttribute("bg-white",""),r.setAttribute("center","[49.010617, 8.3637583]"),r.setAttribute("zoom","13");
 },{"./components/MapElement":"0dpi","./main.scss":"y+CD"}]},{},["ZCfc"], null)
-//# sourceMappingURL=https://tobi238.github.io/web-components/main.dd69b9f4.map
+//# sourceMappingURL=https://tobi238.github.io/web-components/dist/main.dd69b9f4.map
