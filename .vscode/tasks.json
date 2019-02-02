@@ -5,18 +5,14 @@
   "tasks": [
     {
       "label": "Build",
-      "type": "shell",
-      "windows": {
-        "command": "node ${workspaceFolder}/node_modules/gulp/bin/gulp.js build"
-      },
+      "type": "npm",
+      "script": "build",
       "problemMatcher": []
     },
     {
       "label": "Dev Server",
-      "type": "shell",
-      "windows": {
-        "command": "node ${workspaceFolder}/node_modules/gulp/bin/gulp.js server"
-      },
+      "type": "npm",
+      "script": "start",
       "problemMatcher": [],
       "group": {
         "kind": "build",
