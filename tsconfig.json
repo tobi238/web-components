@@ -1,12 +1,17 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
     "target": "es5",
+    "module": "commonjs",
+    "strict": true,
+    "rootDir": "./src",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["dom", "es2015"],
+    "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "rootDir": ".",
-    "noImplicitAny": false,
-    "lib": ["es6", "dom"]
+    "skipLibCheck": true
   },
-  "include": ["src/main.ts"],
-  "exclude": ["node_modules"]
+  "exclude": [".cache", ".vscode", "dist"],
+  "types": ["./src/typings"]
 }

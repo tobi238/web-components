@@ -1,9 +1,11 @@
-import { Map, Icon, TileLayer, latLng, LatLngExpression } from "leaflet";
+import { Map, TileLayer, latLng, LatLngExpression } from 'leaflet';
 
 export default class MapElement extends HTMLElement {
   private styles: HTMLStyleElement;
 
-  map: Map;
+  shadowRoot!: ShadowRoot;
+
+  map!: Map;
   mapContainer: HTMLElement;
   private apiKey: string;
   private center: LatLngExpression = latLng([49.010617, 8.3637583]);
@@ -15,16 +17,15 @@ export default class MapElement extends HTMLElement {
 
     // SHADOW ROOT
     this.attachShadow({
-      mode: "open"
+      mode: 'open'
     });
 
     // SETUP LEAFLET
-    this.setupIcons();
-    this.apiKey =
-      "pk.eyJ1IjoidG9iaTIzOCIsImEiOiJQOTUxczRNIn0.AD6w_VU06HpfTc4rJDTwnQ";
+    this.setupLeafletStylesheet();
+    this.apiKey = 'pk.eyJ1IjoidG9iaTIzOCIsImEiOiJQOTUxczRNIn0.AD6w_VU06HpfTc4rJDTwnQ';
 
     // STYLES
-    this.styles = document.createElement("style");
+    this.styles = document.createElement('style');
     this.styles.innerHTML = `
       :host {
         position: relative;
@@ -57,7 +58,7 @@ export default class MapElement extends HTMLElement {
     this.shadowRoot.appendChild(this.styles);
 
     // HTML
-    this.mapContainer = document.createElement("div");
+    this.mapContainer = document.createElement('div');
     this.shadowRoot.appendChild(this.mapContainer);
 
     this.createMap(this.mapContainer);
@@ -69,24 +70,24 @@ export default class MapElement extends HTMLElement {
   // ELEMENT CONNECTED TO DOM CALLBACK
   connectedCallback() {
     this.map.invalidateSize();
-    this.mapContainer.classList.add("show");
+    this.mapContainer.classList.add('show');
   }
 
   // ELEMENT ATTRIBUTES CHANGED CALLBACK
   static get observedAttributes() {
-    return ["center", "zoom"];
+    return ['center', 'zoom'];
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     console.log(this, name, oldValue, newValue);
     switch (name) {
-      case "center":
+      case 'center':
         this.center = latLng(JSON.parse(newValue));
         this.map.flyTo(this.center, this.zoom, {
           duration: 0.3
         });
         break;
-      case "zoom":
+      case 'zoom':
         this.zoom = Number(newValue);
         this.map.flyTo(this.center, this.zoom, {
           duration: 0.3
@@ -98,21 +99,15 @@ export default class MapElement extends HTMLElement {
   // CUSTOM METHODS
 
   /**
-   * overwrite default location of leaflet icons and stylesheet
+   * Setup leaflet stylesheet by searching parent scope link url and create new link inside component
    */
-  setupIcons() {
-    Icon.Default.imagePath = window.location.origin;
-    Icon.Default.mergeOptions({
-      iconRetinaUrl: `lib/leaflet/marker-icon-2x.png`,
-      iconUrl: `lib/leaflet/marker-icon.png`,
-      shadowUrl: `lib/leaflet/marker-shadow.png`
-    });
-
-    const leafletCSS = document.createElement("link");
-    leafletCSS.href = `lib/leaflet/leaflet.css`;
-    leafletCSS.type = "text/css";
-    leafletCSS.rel = "stylesheet";
-    leafletCSS.media = "screen,print";
+  setupLeafletStylesheet() {
+    const parentLink = document.getElementById('leafletStyle') as HTMLLinkElement;
+    const leafletCSS = document.createElement('link');
+    leafletCSS.href = parentLink && parentLink.href;
+    leafletCSS.type = 'text/css';
+    leafletCSS.rel = 'stylesheet';
+    leafletCSS.media = 'screen,print';
     this.shadowRoot.appendChild(leafletCSS);
   }
 
@@ -120,7 +115,7 @@ export default class MapElement extends HTMLElement {
    * create a new leaflet map
    * @param {HTMLElement|string} target map container element
    */
-  createMap(target) {
+  createMap(target: HTMLElement | string) {
     this.map = new Map(target, {
       center: this.center,
       zoom: this.zoom,
@@ -132,16 +127,13 @@ export default class MapElement extends HTMLElement {
    * create a base tile layer
    */
   createBaseLayer() {
-    return new TileLayer(
-      "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}",
-      {
-        accessToken: this.apiKey,
-        attribution: `Map data &copy;<a href="https://www.openstreetmap.org/">OpenStreetMap</a>
+    return new TileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      accessToken: this.apiKey,
+      attribution: `Map data &copy;<a href="https://www.openstreetmap.org/">OpenStreetMap</a>
       contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,
       Imagery © <a href="https://www.mapbox.com/">Mapbox</a>`,
-        id: "mapbox.streets",
-        maxZoom: 18
-      }
-    );
+      id: 'mapbox.streets',
+      maxZoom: 18
+    });
   }
 }
