@@ -7,7 +7,6 @@ export default class MapElement extends HTMLElement {
 
   map!: Map;
   mapContainer: HTMLElement;
-  private apiKey: string;
   private center: LatLngExpression = latLng([49.010617, 8.3637583]);
   private zoom: number = 10;
   baseLayer: TileLayer;
@@ -22,7 +21,6 @@ export default class MapElement extends HTMLElement {
 
     // SETUP LEAFLET
     this.setupLeafletStylesheet();
-    this.apiKey = 'pk.eyJ1IjoidG9iaTIzOCIsImEiOiJQOTUxczRNIn0.AD6w_VU06HpfTc4rJDTwnQ';
 
     // STYLES
     this.styles = document.createElement('style');
@@ -127,13 +125,12 @@ export default class MapElement extends HTMLElement {
    * create a base tile layer
    */
   createBaseLayer() {
-    return new TileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-      accessToken: this.apiKey,
-      attribution: `Map data &copy;<a href="https://www.openstreetmap.org/">OpenStreetMap</a>
-      contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,
-      Imagery © <a href="https://www.mapbox.com/">Mapbox</a>`,
-      id: 'mapbox.streets',
-      maxZoom: 18
-    });
+    return new TileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png',
+      {
+        // tslint:disable-next-line: max-line-length
+        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        id: 'mapbox.streets',
+        maxZoom: 18
+      });
   }
 }
